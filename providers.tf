@@ -28,8 +28,17 @@ provider "aws" {
 }
 
 provider "aws" {
-  alias  = "us-west-2"
-  region = "us-west-2"
+  alias  = "eu-central-1"
+  region = "eu-central-1"
+
+  assume_role {
+    role_arn = "arn:aws:iam::${var.aws_account_id}:role/lab-admin"
+  }
+}
+
+provider "aws" {
+  alias  = "ap-southeast-2"
+  region = "ap-southeast-2"
 
   assume_role {
     role_arn = "arn:aws:iam::${var.aws_account_id}:role/lab-admin"

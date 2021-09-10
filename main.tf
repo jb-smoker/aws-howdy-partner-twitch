@@ -1,9 +1,9 @@
 locals {
   # Aws region(s) | cidr(s) for network deployment
   region = {
-    us-east-1 = "10.1.0.0/16"
-    # eu-central-1   = "10.2.0.0/16"
-    # ap-southeast-2 = "10.3.0.0/16"
+    us-east-1      = "10.1.0.0/16"
+    eu-central-1   = "10.2.0.0/16"
+    ap-southeast-2 = "10.3.0.0/16"
     # us-west-2      = "10.4.0.0/16"
     # sa-east-1      = "10.5.0.0/16"
     # ap-northeast-1 = "10.6.0.0/16"
@@ -11,8 +11,9 @@ locals {
   }
   # Avx transit peering pairs
   transit_peering = {
-    # us-east-1-eu-central-1      = ["us-east-1", "eu-central-1"]
-    # eu-central-1-ap-southeast-2 = ["eu-central-1", "ap-southeast-2"]
+    us-east-1-eu-central-1      = ["us-east-1", "eu-central-1"]
+    eu-central-1-ap-southeast-2 = ["eu-central-1", "ap-southeast-2"]
+    us-east-1-ap-southeast-2    = ["us-east-1", "ap-southeast-2"]
     # us-west-2-ap-southeast-2    = ["us-west-2", "ap-southeast-2"]
     # us-east-1-us-west-2         = ["us-east-1", "us-west-2"]
     # us-west-2-sa-east-1         = ["us-west-2", "sa-east-1"]

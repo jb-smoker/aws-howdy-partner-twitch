@@ -30,14 +30,28 @@ module "workload_instance_us_east_1" {
   common_tags      = var.common_tags
 }
 
-# module "workload_instance_us_west_2" {
-#   source           = "./workload_instance"
-#   keypair_name     = "smoker"
-#   subnet_id        = module.regional_network["us-west-2"].spoke_2_vpc.private_subnets[0].subnet_id
-#   vpc_id           = module.regional_network["us-west-2"].spoke_2_vpc.vpc_id
-#   instance_profile = aws_iam_instance_profile.ec2_role_for_ssm.name
-#   common_tags      = var.common_tags
-#   providers = {
-#     aws = aws.us-west-2
-#   }
-# }
+module "workload_instance_eu_central_1" {
+  count            = contains(keys(local.region), "eu-central-1") ? 1 : 0
+  source           = "./workload_instance"
+  keypair_name     = "smoker"
+  subnet_id        = module.regional_network["eu-central-1"].spoke_2_vpc.private_subnets[0].subnet_id
+  vpc_id           = module.regional_network["eu-central-1"].spoke_2_vpc.vpc_id
+  instance_profile = aws_iam_instance_profile.ec2_role_for_ssm.name
+  common_tags      = var.common_tags
+  providers = {
+    aws = aws.eu-central-1
+  }
+}
+
+module "workload_instance_ap_southeast_2" {
+  count            = contains(keys(local.region), "ap_southeast_2") ? 1 : 0
+  source           = "./workload_instance"
+  keypair_name     = "smoker"
+  subnet_id        = module.regional_network["ap_southeast_2"].spoke_2_vpc.private_subnets[0].subnet_id
+  vpc_id           = module.regional_network["ap_southeast_2"].spoke_2_vpc.vpc_id
+  instance_profile = aws_iam_instance_profile.ec2_role_for_ssm.name
+  common_tags      = var.common_tags
+  providers = {
+    aws = aws.ap-southeast-2
+  }
+}
