@@ -29,20 +29,22 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-          tf_actions_working_dir: egress-fqdn/
 
       # Check for proper terraform formatting
       - name: Terraform Format
+        working-directory: ./egress-fqdn
         id: fmt
         run: terraform fmt -check
 
       # Initialize Terraform
       - name: Terraform Init
+        working-directory: ./egress-fqdn
         id: init
         run: terraform init
 
       # Terraform plan on pull requests only
       - name: Terraform Plan
+        working-directory: ./egress-fqdn
         id: plan
         # if: github.event_name == 'pull_request'
         run: terraform plan -no-color
@@ -81,5 +83,6 @@ jobs:
 
       # Terraform apply on push to main branch
       - name: Terraform Apply
+        working-directory: ./egress-fqdn
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
