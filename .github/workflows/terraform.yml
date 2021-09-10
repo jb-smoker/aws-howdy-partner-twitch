@@ -32,19 +32,19 @@ jobs:
 
       # Check for proper terraform formatting
       - name: Terraform Format
-        working-directory: ./egress-fqdn
+        working-directory: ./egress_fqdn
         id: fmt
         run: terraform fmt -check
 
       # Initialize Terraform
       - name: Terraform Init
-        working-directory: ./egress-fqdn
+        working-directory: ./egress_fqdn
         id: init
         run: terraform init
 
       # Terraform plan on pull requests only
       - name: Terraform Plan
-        working-directory: ./egress-fqdn
+        working-directory: ./egress_fqdn
         id: plan
         # if: github.event_name == 'pull_request'
         run: terraform plan -no-color
@@ -83,6 +83,6 @@ jobs:
 
       # Terraform apply on push to main branch
       - name: Terraform Apply
-        working-directory: ./egress-fqdn
+        working-directory: ./egress_fqdn
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
