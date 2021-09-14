@@ -21,6 +21,7 @@ resource "aviatrix_gateway" "us_east_1_psf" {
 }
 
 # Workload instance(s)
+# terraform apply -target module.workload_instance_us_east_1 -target module.workload_instance_eu_central_1 -target module.workload_instance_ap_southeast_2
 # module "workload_instance_us_east_1" {
 #   source           = "./workload_instance"
 #   keypair_name     = "smoker"
