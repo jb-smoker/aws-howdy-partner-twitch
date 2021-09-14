@@ -1,7 +1,3 @@
-data "aviatrix_gateway" "us_east_1_spoke_2" {
-  gw_name = "aviatrix-avx-us-east-1-spoke-2"
-}
-
 resource "aviatrix_fqdn" "howdy_partner" {
   fqdn_tag            = "allow_egress"
   fqdn_enabled        = true
@@ -10,6 +6,12 @@ resource "aviatrix_fqdn" "howdy_partner" {
 
   gw_filter_tag_list {
     gw_name = "avx-us-east-1-spoke-2"
+  }
+  gw_filter_tag_list {
+    gw_name = "avx-eu-central-1-spoke-2"
+  }
+  gw_filter_tag_list {
+    gw_name = "avx-ap-southeast-2-spoke-2"
   }
 }
 
