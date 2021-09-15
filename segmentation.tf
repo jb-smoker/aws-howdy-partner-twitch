@@ -66,3 +66,10 @@ resource "aviatrix_segmentation_security_domain_connection_policy" "us_east_1_sp
   domain_name_1 = "us-east-1-spoke-2"
   domain_name_2 = each.key
 }
+
+# Connection policy to allow access from ap-southeast-2 to eu-central-1
+# terraform apply -target aviatrix_segmentation_security_domain_connection_policy.ap_souteast_2_eu_central_1
+# resource "aviatrix_segmentation_security_domain_connection_policy" "ap_souteast_2_eu_central_1" {
+#   domain_name_1 = "ap-southeast-2-spoke-2"
+#   domain_name_2 = "eu-central-1-spoke-2"
+# }
